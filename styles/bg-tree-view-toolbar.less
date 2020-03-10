@@ -1,0 +1,14 @@
+// The ui-variables file is provided by base themes provided by Atom.
+//
+// See https://github.com/atom/atom-dark-ui/blob/master/styles/ui-variables.less
+// for a full listing of what's available.
+@import "ui-variables";
+
+.bg-tree-view-toolbar {
+}
+
+
+/* make the tree-view selected item color reflect if it has the focus */
+div.tool-panel.tree-view:focus .selected::before {
+    background-color: @background-color-selected;
+}

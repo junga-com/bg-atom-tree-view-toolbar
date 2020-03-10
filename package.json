@@ -1,0 +1,31 @@
+{
+  "name": "bg-tree-view-toolbar",
+  "main": "./lib/bg-tree-view-toolbar",
+  "version": "0.0.0",
+  "description": "Adds a toolbar to the tree-view",
+  "keywords": [
+    "tree-view",
+    "tree",
+    "toolbar",
+    "header",
+    "decoration"
+  ],
+  "repository": "https://github.com/bobjunga/bg-tree-view-toolbar",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+    "atom-select-list": "^0.7.2",
+    "bg-atom-utils": "file:../bg-atom-utils",
+    "bg-atom-redom-ui": "file:../bg-atom-redom-ui",
+    "redom": "^3.24.2"
+  },
+  "consumedServices": {
+    "tree-view": {
+      "versions": {
+        "^1.0.0": "consumeTreeView"
+      }
+    }
+  }
+}
