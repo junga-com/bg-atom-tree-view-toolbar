@@ -6,36 +6,19 @@
 
 div.bg-tree-view-toolbar {
     height: fit-content;
+    font-size-adjust: 0.7;
+
+    padding: 3px;
+    // padding-top: 3px;
+    // padding-bottom: 3px;
+
+    .btn {
+        top: 0px;
+    }
 }
 
 
 /* make the tree-view selected item color reflect if it has the focus */
 div.tool-panel.tree-view:focus .selected::before {
     background-color: @background-color-selected;
-}
-
-
-atom-panel.modal.BGAtomRedomExamples {
-    top: 100px;
-}
-
-atom-panel.modal.BGAtomRedomExamples .BGOneExample  {
-    display: grid;
-    grid: "title title"  3em
-          "code      demo"
-          / 50%      auto;
-    * {
-        border: 1px black solid;
-    }
-    .title {
-        grid-area: title;
-    }
-    .demo {
-        grid-area: demo;
-        
-    }
-    .code {
-        grid-area: code;
-        tab-size: 2;
-    }
 }
