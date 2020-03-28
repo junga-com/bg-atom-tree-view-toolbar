@@ -1,6 +1,7 @@
 {
   "name": "bg-tree-view-toolbar",
-  "main": "./lib/bg-tree-view-toolbar",
+  "main": "index.js",
+  "module": "./lib/bg-tree-view-toolbar",
   "version": "0.0.0",
   "description": "Adds a toolbar to the tree-view",
   "keywords": [
@@ -16,38 +17,16 @@
     "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
-    "@atom/babel7-transpiler": "^1.0.0-1",
-    "@babel/core": "^7.9.0",
     "bg-atom-redom-ui": "file:../bg-atom-redom-ui",
     "bg-atom-utils": "file:../bg-atom-utils",
-    "redom": "^3.24.2"
+    "redom": "^3.24.2",
+    "esm": "^3.2.25"
   },
-  "atomTranspilers": [
-    {
-      "glob": "**/*.js",
-      "transpiler": "@atom/babel7-transpiler",
-      "options": {
-        "babel": {
-          "presets": [
-            "@babel/env"
-          ],
-          "plugins": [
-            "@babel/plugin-proposal-class-properties"
-          ],
-          "babelrc": false
-        }
-      }
-    }
-  ],
   "consumedServices": {
     "tree-view": {
       "versions": {
         "^1.0.0": "consumeTreeView"
       }
     }
-  },
-  "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/preset-env": "^7.9.0"
   }
 }
