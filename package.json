@@ -1,6 +1,6 @@
 {
   "name": "bg-tree-view-toolbar",
-  "main": "esmPkgLoader.js",
+  "main": "esmToCjsPkgBridge.js",
   "module": "./lib/TreeToolBarAtomPlugin",
   "version": "0.0.0",
   "description": "Adds a toolbar to the tree-view",
