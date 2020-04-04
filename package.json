@@ -3,22 +3,23 @@
   "main": "esmToCjsPkgBridge.js",
   "module": "./lib/TreeToolBarAtomPlugin",
   "version": "0.0.0",
-  "description": "Adds a toolbar to the tree-view",
+  "description": "Adds a toolbar to the Atom tree-view",
   "keywords": [
     "tree-view",
     "tree",
     "toolbar",
     "header",
+    "buttons",
     "decoration"
   ],
-  "repository": "https://github.com/bobjunga/bg-tree-view-toolbar",
+  "repository": "https://github.com/junga-com/bg-atom-tree-view-toolbar",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
-    "bg-atom-redom-ui": "^1.1.0",
-    "bg-atom-utils": "^1.1.0",
+    "bg-atom-redom-ui": "^2.0.0",
+    "bg-atom-utils": "^2.0.0",
     "redom": "^3.24.2",
     "esm": "^3.2.25"
   },
