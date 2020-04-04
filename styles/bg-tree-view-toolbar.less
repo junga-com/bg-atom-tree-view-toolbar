@@ -15,10 +15,32 @@ div.bg-tree-view-toolbar {
     .btn {
         top: 0px;
     }
+
+    // this is the gear icon to open the package config
+    .btnBarCfg {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        height: 0px;
+        padding: 0px;
+    }
+
+    // this is for a group of two buttons that are stack vertically and together are the size of one button. 
+    // the font size line hieght up/down uses this
+    span.btn.bgVertical {
+        display: flex;
+        flex-flow: column nowrap;
+        padding: 0px;
+
+        > button::before {
+            display: block;
+            margin-top: -5px;
+            font-size: 20px;
+        }
+    }
 }
 
-
-/* make the tree-view selected item color reflect if it has the focus */
+/* this makes the tree-view selected item color reflect if it has the focus */
 div.tool-panel.tree-view:focus .selected::before {
     background-color: @background-color-selected;
 }
