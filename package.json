@@ -20,8 +20,8 @@
   "dependencies": {
     "bg-atom-redom-ui": "^2.0.0",
     "bg-atom-utils": "^2.0.0",
-    "redom": "^3.24.2",
-    "esm": "^3.2.25"
+    "esm": "^3.2.25",
+    "redom": "^3.24.2"
   },
   "consumedServices": {
     "tree-view": {

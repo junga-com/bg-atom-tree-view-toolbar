@@ -3,7 +3,8 @@
 // See https://github.com/atom/atom-dark-ui/blob/master/styles/ui-variables.less
 // for a full listing of what's available.
 @import "ui-variables";
-
+@import (less) "../node_modules/bg-atom-redom-ui/bg-atom-redom-ui.css";
+    
 div.bg-tree-view-toolbar {
     height: fit-content;
     font-size-adjust: 0.7;
@@ -25,6 +26,13 @@ div.bg-tree-view-toolbar {
         padding: 0px;
     }
 
+    .FontSizeButtonGroup.btn-group {
+        > button.btn {
+            padding-left:0.5em;
+            padding-right:0.5em;
+        }
+    }
+
     // this is for a group of two buttons that are stack vertically and together are the size of one button. 
     // the font size line hieght up/down uses this
     span.btn.bgVertical {
@@ -39,6 +47,13 @@ div.bg-tree-view-toolbar {
         }
     }
 }
+
+div.btn-group.unsupportted,
+button.btn.unsupportted {
+    opacity: 0.3;
+    color: red;
+}
+
 
 /* this makes the tree-view selected item color reflect if it has the focus */
 div.tool-panel.tree-view:focus .selected::before {
