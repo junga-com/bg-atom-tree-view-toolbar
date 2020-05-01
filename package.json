@@ -18,8 +18,8 @@
     "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
-    "bg-atom-redom-ui": "^2.0.0",
-    "bg-atom-utils": "^2.0.0",
+    "bg-atom-redom-ui": "file:../bg-atom-redom-ui",
+    "bg-atom-utils": "file:../bg-atom-utils",
     "esm": "^3.2.25",
     "redom": "^3.24.2"
   },
