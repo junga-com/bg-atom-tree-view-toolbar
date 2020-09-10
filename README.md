@@ -3,7 +3,7 @@
 This adds a toolbar to the top of the Atom tree-view. It comes with four buttons that can to turned on/off in the settings view. You can also add your own buttons by using the service in your own package or in your init.js.
 
 This package also includes a style that makes the color of the selected tree item highlight change when the tree view has the focus so that you can more easily tell where the focus is in your workspace.
- 
+
 ![A screenshot of toolbar in action](./bg-tree-view-toolbar.png)
 
 ## Commands
@@ -13,7 +13,7 @@ toolbar is shown.
 The shown state refers to when the toolbar is attached to the tree-view. It maybe 'shown' even if the tree view tab is not activate
 and therefore neither the tree view nor the toolbar would be visible.
 
-|Command                              | Scope      | Description 
+|Command                              | Scope      | Description
 | ----------------------------------------------------|--------    |------------
 | bg-tree-view-toolbar:show           | always<br/>on  | Cause the toolbar to appear on the tree view. <br/>(it is shown by default)
 | bg-tree-view-toolbar:hide           | always<br/>on  | Cause the toolbar to be removed from the tree view.
@@ -36,14 +36,14 @@ node. collapse-all results in only that one node being shown but that is not ver
 #### btnReveal 'Auto Reveal'
 This controls whether the tree selection changes to reflect the active editor pane as you focus different tabs. This relies on a
 change I submitted in March 2020 to the tree-view project and I am releasing this package before I know if it will be accepted. If
-the tree-view package you have does not have this change, this button will not be enabled even if its configuration is enabled. 
+the tree-view package you have does not have this change, this button will not be enabled even if its configuration is enabled.
 
 #### fontGroup
 This is a group of buttons that change the font size and line spacing of the items in the tree view. This has the effect of zooming
 in and out to make the tradeoff of seeing more of your project and each item being easier to read.
 
 The commands that these buttons execute are provided by the [bg-ui-font-sizer] package so these buttons will not be visible unless
-you have installed that package. 
+you have installed that package.
 
 
 ## Adding Additional Buttons
@@ -153,7 +153,7 @@ In your package's JS file referenced in package.json's "main" property...
 
 You can change a lot about the toolbar by styling it differently in your styles.less file. The default styling is in the ./styles/bg-tree-view-toolbar.less
 file in this project's pacakge folder (typically that will be ~/.atom/pacakges/bg-tree-view-toolbar). You can copy all or part of that file to your ~/.atom/styles.less
-file to make changes. 
+file to make changes.
 
 The general structure is this...
 ```less
@@ -161,10 +161,14 @@ div.bg-tree-view-toolbar {
 	// attributes for the bar container
 
     .btn {
-        // default attributes for all buttons inside the (The .btn class is used by atom for all standard button styling) 
+        // default attributes for all buttons inside the (The .btn class is used by atom for all standard button styling)
     }
 
 	.<buttonName> {
 		// styling for a specific button. See the Included Buttons section for the names.
 	}
 ```
+
+#### Hacking Tip
+
+If you want to play around with this package in ways that are not exposed through the commands, open devtools console (window:toggle-dev-tools) and explore the bgPlugins... global variable. Start typing the `bgPlugin[...` and use the autocomplete to select this package name. If you hit enter on the completed `bgPlugins['packageName']` it shows you a reference to the plugin object that you can expand to explore the current state of the plugin. You can autocomplete further to navigate to the sub-objects and invoke methods and see what they do.
