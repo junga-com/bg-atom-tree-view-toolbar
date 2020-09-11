@@ -10,7 +10,8 @@
     "toolbar",
     "header",
     "buttons",
-    "decoration"
+    "decoration",
+    "bg"
   ],
   "repository": "https://github.com/junga-com/bg-atom-tree-view-toolbar",
   "license": "MIT",
@@ -18,8 +19,8 @@
     "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
-    "bg-atom-redom-ui": "file:../bg-atom-redom-ui",
-    "bg-atom-utils": "file:../bg-atom-utils",
+    "bg-atom-redom-ui": "^2.2.0",
+    "bg-atom-utils": "^2.1.0",
     "esm": "^3.2.25",
     "redom": "^3.24.2"
   },
