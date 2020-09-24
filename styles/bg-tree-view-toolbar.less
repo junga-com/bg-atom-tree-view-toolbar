@@ -4,7 +4,7 @@
 // for a full listing of what's available.
 @import "ui-variables";
 @import (less) "../node_modules/bg-atom-redom-ui/bg-atom-redom-ui.css";
-    
+
 div.bg-tree-view-toolbar {
     height: fit-content;
     font-size-adjust: 0.7;
@@ -15,6 +15,8 @@ div.bg-tree-view-toolbar {
 
     .btn {
         top: 0px;
+        padding-left:0.3em;
+        padding-right:0.3em;
     }
 
     // this is the gear icon to open the package config
@@ -31,9 +33,13 @@ div.bg-tree-view-toolbar {
             padding-left:0.5em;
             padding-right:0.5em;
         }
+        button:nth-child(2), button:nth-child(3) {
+            padding-left:0.2em;
+            padding-right:0.2em;
+        }
     }
 
-    // this is for a group of two buttons that are stack vertically and together are the size of one button. 
+    // this is for a group of two buttons that are stack vertically and together are the size of one button.
     // the font size line hieght up/down uses this
     span.btn.bgVertical {
         display: flex;
@@ -41,8 +47,9 @@ div.bg-tree-view-toolbar {
         padding: 0px;
 
         > button::before {
+            padding: 0px;
             display: block;
-            margin-top: -5px;
+            margin: -5px;
             font-size: 20px;
         }
     }
@@ -58,4 +65,17 @@ button.btn.unsupportted {
 /* this makes the tree-view selected item color reflect if it has the focus */
 div.tool-panel.tree-view:focus .selected::before {
     background-color: @background-color-selected;
+}
+
+// Config Settings UI:
+section.settings-panel {
+    // make the radiobuttons on the config setting stack vertically
+    #tree-view\2e pageUpDnMode, #tree-view\2e singleClickMode {
+        display: flex;
+        flex-direction: column;
+        label {
+            margin-bottom: 0.5em;
+            padding-left: 2.25em;
+        }
+    }
 }

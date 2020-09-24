@@ -19,7 +19,7 @@ and therefore neither the tree view nor the toolbar would be visible.
 | bg-tree-view-toolbar:hide           | always<br/>on  | Cause the toolbar to be removed from the tree view.
 | bg-tree-view:toggle-hidden          | when shown | Toggle the view hidden files button
 | <nowrap>bg-tree-view:collapse-to-root-level</nowrap> | when shown | Execute the collapse to root button
-| bg-tree-view:toggle-auto-reveal     | when shown | Toggle the auto reveal button
+| bg-tree-view:toggle-auto-track     | when shown | Toggle the auto track button
 
 ## Included Buttons
 
@@ -30,10 +30,10 @@ Opens the settings view to this window to configure and learn about the toolbar
 Toggles the 'tree-view.hideIgnoredNames' configuration to hide and reveal hidden files in the tree view.
 
 #### btnColAll '1st Lvl'
-This is similar to collapses-all except it keeps the first level expanded. This is usefule when your tree view has only one project
+This is similar to collapses-all except it keeps the first level expanded. This is useful when your tree view has only one project
 node. collapse-all results in only that one node being shown but that is not very interesting.   
 
-#### btnReveal 'Auto Reveal'
+#### btnTrack 'Auto Track'
 This controls whether the tree selection changes to reflect the active editor pane as you focus different tabs. This relies on a
 change I submitted in March 2020 to the tree-view project and I am releasing this package before I know if it will be accepted. If
 the tree-view package you have does not have this change, this button will not be enabled even if its configuration is enabled.
@@ -48,7 +48,7 @@ you have installed that package.
 
 ## Adding Additional Buttons
 
-A service is exposed so that you can control the toolbar and add/remove buttons. The service is available not only via the Atom service hub controlled by package.json but also via the bgPlugin registry (See [bg-atom-utils](https://github.com/junga-com/bg-atom-utils) npm package). That allows easily using the service in the init.js file so that you can customize your personal editor without the overhead of making and maintaining an atom package.
+A service is exposed so that you can control the toolbar and add/remove buttons. The service is available not only via the Atom service hub controlled by package.json but also via the bg.BGAtomPlugin.get('bg-atom-tree-view-toolbar').view... global entrypoint accessible in the console or init.js (See [bg-atom-utils](https://github.com/junga-com/bg-atom-utils) npm package). That allows easily using the service in the init.js file so that you can customize your personal editor without the overhead of making and maintaining an atom package.
 
 The examples below illustrate a trivial button that alerts a message when clicked. To see examples of more functional buttons, look and the [lib/treeViewButtons.js](./lib/treeViewButtons.js) to see how the builtin buttons are created using the BGDOM component library.
 
@@ -62,6 +62,9 @@ attach the toolbar to the tree view
 
 #### &lt;srv>.hide()
 remove the toolbar from the tree view
+
+#### &lt;srv>.getTreeView()
+returns a reference to the tree-view object
 
 #### &lt;srv>.addButton(_btnName_, _button_)
 add a new button with a unique name
@@ -97,26 +100,30 @@ You can try this right now by copying this code into your inti.js
 
 In init.js ...
 ```javascript
-toolbarService = bgPlugins["bg-tree-view-toolbar"].getViewV1();
-toolbarService.addButton(
-	'f1',
-	'<button class="btn">F1</button>'
+toolbar = bg.BGAtomPlugin.get("bg-tree-view-toolbar").getViewV1();
+toolbar.addButton(
+    'f1',
+    '<button class="btn">F1</button>'
 )
-toolbarService.getButton('f1').onclick = ()=>{alert('Hello World')}
+toolbar.getButton('f1').onclick = ()=>{
+    const tv = toolbar.getTreeView();
+    atom.commands.dispatch(tv, 'tree-view:collapse-all');
+}
 ```
 
 ### Dev Console Example ...
 ---
-Open the dev console (cntr-shift-i or window:toggle-dev-tools command) and you can experiment with the toolbar API in real time.  After you type `bgPlugins["bg-tree-view-toolbar"].getViewV1().` autocomplete will show you what is available.
+Open the dev console (cntr-shift-i or window:toggle-dev-tools command) and you can experiment with the toolbar API in real time.  After you type `bg.BGAtomPlugin.get("bg-tree-view-toolbar").getViewV1().` autocomplete will show you what is available.
 
 Create an f1 button...
 ```javascript
-bgPlugins["bg-tree-view-toolbar"].getViewV1().addButton('f1', '<button class="btn">F1</button>')
-bgPlugins["bg-tree-view-toolbar"].getViewV1().getButton('f1').onclick = ()=>{alert('Hello World')}
+toolbar = bg.BGAtomPlugin.get("bg-tree-view-toolbar");
+toolbar.addButton('f1', '<button class="btn">F1</button>')
+toolbar.getButton('f1').onclick = ()=>{alert('Hello World')}
 ```
 Then to remove the f1 button...
 ```javascript
-bgPlugins["bg-tree-view-toolbar"].getViewV1().removeButton('f1')
+toolbar.removeButton('f1')
 
 ```
 
@@ -171,4 +178,14 @@ div.bg-tree-view-toolbar {
 
 #### Hacking Tip
 
-If you want to play around with this package in ways that are not exposed through the commands, open devtools console (window:toggle-dev-tools) and explore the bgPlugins... global variable. Start typing the `bgPlugin[...` and use the autocomplete to select this package name. If you hit enter on the completed `bgPlugins['packageName']` it shows you a reference to the plugin object that you can expand to explore the current state of the plugin. You can autocomplete further to navigate to the sub-objects and invoke methods and see what they do.
+If you want to play around with this package in ways that are not exposed through the commands, open devtools console (window:toggle-dev-tools) and explore the bg... global variable. Start typing the `bg...` to see what mechanisms are available to explore.
+
+  * bg.BGAtomPlugins.logStatus() : list the packages that use the BGPlugin style
+  * bg.BGAtomPlugins.get(pkgName) : get a reference to a package plugin instance to explore
+  * bg.PolyfillObjectMixin.logStatus() : list the Atom polyfills that are installed (these add features to Atom API)
+
+When you complete a command that returns an object, it will be logged in the console where you can expand it to explore its current state. You can autocomplete further to navigate to the sub-objects and if you assign an object to a variable in the console, you can invoke its methods and see what they do.
+```javascript
+> pkg = bg.BGAtomPlugin.get('<packageName>')
+> pkg.addCommand(...)
+```
