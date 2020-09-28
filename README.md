@@ -1,8 +1,15 @@
 # bg-tree-view-toolbar package
 
-This adds a toolbar to the top of the Atom tree-view. It comes with four buttons that can to turned on/off in the settings view. You can also add your own buttons by using the service in your own package or in your init.js.
+#### 2020-09 Update
+This project uses the bg-atom-utils npm package which now installs a number of extensions to the atom.* API objects. I think that they are
+unlikely to cause problems, but if you experience any, please take the time to create an issue on this package to let me know. I am very interested in addressing any issues quickly.
 
-This package also includes a style that makes the color of the selected tree item highlight change when the tree view has the focus so that you can more easily tell where the focus is in your workspace.
+## Summary
+This adds a toolbar to the top of the Atom tree-view. It comes with some builtin buttons that can to turned on/off in this package's settings page. You can also add your own buttons by using one of its APIs in your own package or in your init.js.
+
+This package also includes a number of enhancements to the bundled tree-view package. Those should be a part of that package and I have made PR on that project for at least one of them but it looks like it will take some time for it to be accepted if ever. So any enhancement that patches the tree-view code at runtime can be turned on/off in this package's setting page under the 'Dynamic Patches' section. Note that some of these new tree-view features add configuration settings to the tree-view settings page so go there to configure those features once they are enabled on this page.
+
+This package includes a CSS style that makes the color of the selected tree item highlight change when the tree view has the focus so that you can more easily tell where the focus is in your workspace. That is not controllable through a setting, but you could change it by overriding it in your styles.less file.  
 
 ![A screenshot of toolbar in action](./bg-tree-view-toolbar.png)
 
@@ -10,16 +17,17 @@ This package also includes a style that makes the color of the selected tree ite
 This package provides the following commands. The commands that manipulate the included buttons are only active when the
 toolbar is shown.
 
-The shown state refers to when the toolbar is attached to the tree-view. It maybe 'shown' even if the tree view tab is not activate
+Note that the 'shown' state of the toolbar refers to whether it is shown when the tree-view is visible. It maybe 'shown' even if the tree view tab is not activate
 and therefore neither the tree view nor the toolbar would be visible.
 
-|Command                              | Scope      | Description
-| ----------------------------------------------------|--------    |------------
-| bg-tree-view-toolbar:show           | always<br/>on  | Cause the toolbar to appear on the tree view. <br/>(it is shown by default)
-| bg-tree-view-toolbar:hide           | always<br/>on  | Cause the toolbar to be removed from the tree view.
-| bg-tree-view:toggle-hidden          | when shown | Toggle the view hidden files button
-| <nowrap>bg-tree-view:collapse-to-root-level</nowrap> | when shown | Execute the collapse to root button
-| bg-tree-view:toggle-auto-track     | when shown | Toggle the auto track button
+|Command                              | Scope                 | Description
+| ----------------------------------- |--------               |------------
+| bg-tree-view-toolbar:show           | always<br/>on         | Cause the toolbar to appear on the tree view. <br/>(it is shown by default)
+| bg-tree-view-toolbar:hide           | always<br/>on         | Cause the toolbar to be removed from the tree view.
+| bg-tree-view-toolbar:showWelcomeOnActivation | always<br/>on| Start the tutorial again.
+| bg-tree-view:toggle-hidden          | toolbar shown         | Toggle the view hidden files button
+| <nowrap>bg-tree-view:collapse-to-root-level</nowrap>        | toolbar shown | Execute the collapse to root button
+| bg-tree-view:toggle-auto-track      | toolbar shown         | Toggle the auto track button
 
 ## Included Buttons
 
