@@ -1,0 +1,2 @@
+'.platform-linux .tree-view':
+  'ctrl-h':     'bg-tree-view:toggle-hidden'
